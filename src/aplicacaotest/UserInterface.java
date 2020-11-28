@@ -20,8 +20,8 @@ public interface UserInterface {
     int idade,
     double altura
   ) throws UserAlreadyExistsException;
-  public boolean findbyEmail(String email) throws NotFoundUserException;
-  public boolean update(User user) throws NotFoundUserException;
+  public User findbyEmail(String email) throws NotFoundUserException;
+  public boolean update(User oldUser, User user) throws NotFoundUserException;
   public boolean delete(String email) throws NotFoundUserException;
 
 }

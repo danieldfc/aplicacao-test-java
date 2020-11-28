@@ -15,6 +15,10 @@ public class UserImplements implements UserInterface {
 
   private ArrayList<User> users;
   
+  public UserImplements() {
+    this.users = new ArrayList();
+  }
+  
   @Override
   public boolean add(
     String username,
@@ -37,29 +41,29 @@ public class UserImplements implements UserInterface {
   }
 
   @Override
-  public boolean findbyEmail(String email) throws NotFoundUserException {
+  public User findbyEmail(String email) throws NotFoundUserException {
     User user = new User("", email, "", "", "", 0, 0.0);
     
     for (User each: this.users) {
       if (each.equals(user)) {
-        return true;
+        return each;
       }
     }
     
-    throw new NotFoundUserException("Usuário não encontrado.");
+    throw new NotFoundUserException("User not found.");
   }
 
   @Override
-  public boolean update(User user) throws NotFoundUserException {
-    int index = this.users.indexOf(user);
+  public boolean update(User oldUser, User user) throws NotFoundUserException {
+    for (int i = 0; i < this.users.size(); i++) {
+      if (oldUser.equals(this.users.get(i))) {
+        this.users.set(i, user);
 
-    if (index < 0) {
-      throw new NotFoundUserException("User not found.");
-    }
-
-    this.users.set(index, user);
-
-    return true;
+        return true;
+      }
+    } 
+    
+    throw new NotFoundUserException("User not found.");
   }
 
   @Override
@@ -72,7 +76,7 @@ public class UserImplements implements UserInterface {
       }
     }
     
-    throw new NotFoundUserException("Usuário não encontrado.");
+    throw new NotFoundUserException("User not found.");
   }
 
 }

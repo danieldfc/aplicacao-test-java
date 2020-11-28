@@ -11,7 +11,7 @@ package aplicacaotest;
  */
 public class NotFoundUserException extends Exception {
   
-  private static final long serialVerisonUID = 1L; 
+  private static final long serialVerisonUID = 1L;
   
   public NotFoundUserException(String msg) {
     super(msg);
